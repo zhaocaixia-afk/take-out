@@ -16,6 +16,8 @@
         food:Object
       },
       methods:{
+        //点击按钮，更新state中的数据
+        //isAdd是让action里面分清是add还是decrement
         updateFoodCount(isAdd){
           this.$store.dispatch('updateFoodCount',{isAdd,food:this.food})
         }

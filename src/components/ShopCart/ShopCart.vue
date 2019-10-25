@@ -18,6 +18,7 @@
         </div>
       </div>
       <transition name="move">
+<!--        listShow为监听属性，没有totalcount时无法显示-->
         <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
@@ -60,7 +61,7 @@
         //需要一个cartFoods数组，和商家信息
         ...mapState(['info','cartFoods']),
         ...mapGetters(['totalCount','totalPrice']),
-        //payClass和payText都为 （差多少结算按钮的 样式和文本）
+        //payClass和payText都为（差多少结算按钮的 样式和文本）
         payClass(){
           const {totalPrice} = this
           const {minPrice} = this.info

@@ -43,7 +43,7 @@ export default {
   [RECEIVE_INFO](state,{info}){
     state.info = info
   },
-
+  //实时修改数量
   [INCREMENT_FOOD_COUNT](state,{food}){
     if(!food.count){
       // food.count = 1 //为新增属性，无法实时显示

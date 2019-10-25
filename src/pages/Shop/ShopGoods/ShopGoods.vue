@@ -121,6 +121,7 @@
         //2.收集
         //找到所有分类的li
         const lis = this.$refs.goodsUl.getElementsByClassName('food-list-hook')
+        //函数的作用：将具有length属性的对象 转成 数组
         Array.prototype.slice.call(lis).forEach(li => {
           top += li.clientHeight
           tops.push(top)

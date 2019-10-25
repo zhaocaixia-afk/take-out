@@ -1,10 +1,12 @@
 <template>
     <div class="shop-header">
+<!--      背景图片-->
       <nav class="shop-nav" :style="{backgroundImage:`url(${info.bgImg})`}">
         <a class="back" @click="$router.back()">
           <i class="iconfont icon-arrow_left"></i>
         </a>
       </nav>
+
       <div class="shop-content">
         <img class="content-image" :src="info.avatar">
         <div class="header-content" @click="toggleShopShow">
@@ -26,18 +28,18 @@
         </div>
       </div>
 
-<!--      v-if控制异步请求的数据，三级请求的数据有问题-->
+<!--      v-if控制异步请求的数据，三级请求的数据渲染时有问题-->
       <div class="shop-header-discounts" v-if="info.supports" @click="toggleSupportShow">
         <div class="discounts-left">
           <!-- 把样式存放于一个数组，控制显示-->
           <div class="activity" :class="supportClasses[info.supports[0].type]">
             <span class="content-tag">
-              <span class="mini-tag">首单</span>
+              <span class="mini-tag">{{info.supports[0].name}}</span>
             </span>
-            <span class="activity-content ellipsis">{{info.supports[0].name}}</span>
+            <span class="activity-content ellipsis">{{info.supports[0].content}}</span>
           </div>
         </div>
-        <div class="discounts-right"> {{info.supports.length}} 个优惠 </div>
+        <div class="discounts-right"> {{info.supports.length}}个优惠 </div>
       </div>
 
 <!--      添加动画效果-->
@@ -101,7 +103,7 @@
             <span class="iconfont icon-close"></span>
           </div>
         </div>
-        <div class="activity-sheet-cover"></div>
+        <div class="activity-sheet-cover" @click="toggleSupportShow"></div>
       </div>
     </div>
 </template>
@@ -112,6 +114,7 @@
         name: "ShopHeader",
       data(){
         return{
+          //活动颜色数组，对应type：0,1,2
           supportClasses:['activity-green','activity-red','activity-orange'],
           shopShow:false,//商家详情是否展示
           supportShow:false//商家的优秀活动是否展示

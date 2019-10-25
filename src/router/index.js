@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
 
 //路由组件的懒加载
 const Msite = () => import('../pages/MSite/MSite.vue')
@@ -13,8 +14,6 @@ import Shop from '../pages/Shop/Shop.vue'
 import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods.vue'
 import ShopRating from '../pages/Shop/ShopRating/ShopRating.vue'
 import ShopInfo from '../pages/Shop/ShopInfo/ShopInfo.vue'
-
-Vue.use(Router)
 
 export default new Router({
   routes: [

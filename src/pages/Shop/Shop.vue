@@ -12,6 +12,7 @@
           <router-link to="/shop/info" replace>商家</router-link>
         </div>
       </div>
+<!--      抽象组件，对组件进行缓存，不会被渲染成一个DOM元素。组件的状态将会被保留-->
       <keep-alive>
         <router-view></router-view>
       </keep-alive>

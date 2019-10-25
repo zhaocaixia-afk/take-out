@@ -13,7 +13,13 @@
           <div :class="{on:loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-              <button :class="{right_phone:rightPhone}" @click.prevent="getCode" :disabled="!rightPhone" class="get_verification">{{computeTime>0?`已发送(${computeTime}s)`:'获取验证码'}}</button>
+<!--              rightPhone为监听属性，返回true or false-->
+<!--              disabled：根据rightPhone判断，(禁止点击)：手机号格式不对时，rightPhone为false时-->
+<!--              手机格式正确，按钮的文本内容会发生改变-->
+              <button :class="{right_phone:rightPhone}" @click.prevent="getCode"
+                      :disabled="!rightPhone" class="get_verification">
+                {{computeTime>0?`已发送(${computeTime}s)`:'获取验证码'}}
+              </button>
             </section>
             <section class="login_verification">
               <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
