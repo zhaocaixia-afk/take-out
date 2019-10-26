@@ -131,7 +131,6 @@
       },
       //左侧的点击事件，对应右侧的变化
       clickMenuItem(index){
-        // console.log(index);
         //得到目标位置的scrollY
         const scrollY = this.tops[index]
         //上来一点，样式就发生变化

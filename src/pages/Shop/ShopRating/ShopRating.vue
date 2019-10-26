@@ -1,6 +1,7 @@
 <template>
   <div class="ratings" ref="ratings">
     <div class="ratings-content">
+<!--      头部 部分-->
       <div class="overview">
         <div class="overview-left">
           <h1 class="score">{{info.score}}</h1>
@@ -25,6 +26,7 @@
         </div>
       </div>
       <div class="split"></div>
+<!--      全部，满意，不满意部分-->
       <div class="ratingselect">
         <div class="rating-type border-1px">
 <!--          点击修改selectType的值-->
@@ -32,7 +34,7 @@
             <span class="count">{{ratings.length}}</span>
           </span>
           <span class="block positive" :class="{active:selectType===0}" @click="setSelectType(0)"> 满意
-<!--            计算属性：计算满意的长度-->
+<!--            positiveSize为getters属性：根据ratings里面的rateType计算出满意的长度-->
             <span class="count">{{positiveSize}}</span>
           </span>
           <span class="block negative" :class="{active:selectType===1}" @click="setSelectType(1)"> 不满意
@@ -45,9 +47,10 @@
           <span class="text">只看有内容的评价</span>
         </div>
       </div>
+<!--      评论列表显示区域-->
       <div class="rating-wrapper">
         <ul>
-<!--          不能为ratings，而为过滤产生的新数组-->
+<!--          渲染的数据 不能为ratings，而为过滤产生的新数组-->
           <li class="rating-item" v-for="(rating,index) in filterRatings" :key="index">
             <div class="avatar">
               <img width="28" height="28" :src="rating.avatar">
@@ -84,7 +87,8 @@
       data(){
         return{
           onlyShowText:true,//只看有内容的（默认为勾选）
-          selectType:2 //2代表全部
+          //selectType：为自己设置的变量，区分是选择了（全部、满意、还是不满意）
+          selectType:2 //2代表全部，0代表满意，1代表不满意
         }
       },
       mounted(){
@@ -98,20 +102,23 @@
         ...mapState(['info','ratings']),
         ...mapGetters(['positiveSize']),
         filterRatings(){
-          //跟总数组有关,满意度有关，勾选有关
+          //准备数据 跟总数组有关,满意度有关，勾选有关
           const {ratings,onlyShowText,selectType} = this
           //产生一个过滤新数组
           return ratings.filter(rating => {
+            //每一条评论的，rateType,text
             const {rateType,text} = rating
             /*
-            条件1：
+            条件1：自定义属性selectType与rateType的关系，1、全部 2、满意与满意相等
               selectType：0/1/2
               rateType: 0/1
               selectType===2 || selectType===rateType
-            条件2：
+            条件2：根据onlyShowText判断选择 （只看有内容的评价，还是全看）
               onlyShowText:true/false
               text:有值、没值
               !onlyShowText || text.length>0
+              onlyShowText为勾选(true)时，就判断text.length就要大于0
+              onlyShowText没有勾选(false)时，就不需要判断text.length是否大于0
              */
             return (selectType===2 || selectType===rateType) && (!onlyShowText || text.length>0)
           })

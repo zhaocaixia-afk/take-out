@@ -2,19 +2,22 @@
   <section class="profile">
     <HeaderTop title="我的"/>
     <section class="profile-number">
+<!--      在App.vue就触发获取个人信息的函数，判断24小时之内用户是否登录-->
 <!--      如果登录了，再点击，就应该去个人中心界面-->
       <router-link :to="userInfo._id ? '/userinfo':'/login'" href="javascript:" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <!--          1、有手机号，就隐藏显示下面的手机号-->
+          <!--          1、有手机号userInfo.phone为true时，就隐藏下面的(手机号或者'登录/注册'文字-->
           <!--          2、没有手机号，就看是否有id-->
+          <!--          3、总之不管哪一种方式登录，'登录/注册'文字都不存在-->
           <p class="user-info-top" v-if="!userInfo.phone">{{userInfo._id || '登录/注册'}}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile"></i>
             </span>
+            <!--            显示登录的手机号，或者显示暂无绑定手机号-->
             <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
           </p>
         </div>
@@ -92,6 +95,8 @@
       </a>
     </section>
     <section class="profile_my_order border-1px">
+<!--      使用了mint-ui里面的button，MessageBox-->
+<!--      退出按钮，只会在用户存在的情况下 显示-->
       <mt-button @click="logout" type="danger" size="large" v-if="userInfo._id">退出登陆</mt-button>
     </section>
   </section>
@@ -109,13 +114,11 @@
     },
     methods:{
       logout(){
-        MessageBox.confirm('确定退出登陆吗？').then(
-          action => {
+        MessageBox.confirm('确定退出登陆吗？').then(action => {
             //请求退出
             this.$store.dispatch('logout')
-            Toast('退出成功')
-          },
-        action => {
+            // Toast('退出成功')
+          }, action => {
           console.log('点击了取消');
         })
       }

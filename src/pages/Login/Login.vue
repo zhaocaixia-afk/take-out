@@ -13,9 +13,9 @@
           <div :class="{on:loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-<!--              rightPhone为监听属性，返回true or false-->
-<!--              disabled：根据rightPhone判断，(禁止点击)：手机号格式不对时，rightPhone为false时-->
-<!--              手机格式正确，按钮的文本内容会发生改变-->
+<!--              rightPhone为（手机号码正则表达式）的监听属性，返回true or false：1、决定是否显示样式 2、button按钮是否可按-->
+<!--              (禁止点击)：手机号格式不对时，rightPhone为false时-->
+<!--              手机格式正确，才能点击按钮，发送获取验证码的请求，随之按钮的文本内容会显示倒计时-->
               <button :class="{right_phone:rightPhone}" @click.prevent="getCode"
                       :disabled="!rightPhone" class="get_verification">
                 {{computeTime>0?`已发送(${computeTime}s)`:'获取验证码'}}
@@ -39,6 +39,7 @@
                 <input type="text" maxlength="8" placeholder="密码" v-if="showPwd" v-model="pwd">
                 <input type="password" maxlength="8" placeholder="密码" v-else v-model="pwd">
 <!--                点击切换（显示还是隐藏）-->
+<!--                显示时，1、切换为type='text'的input 2、样式为on，文本为abc，添加滚动样式-->
                 <div class="switch_button" :class="showPwd?'on':'off'" @click="showPwd=!showPwd">
                   <div class="switch_circle" :class="{right:showPwd}"></div>
                   <span class="switch_text">{{showPwd?'abc':'...'}}</span>
@@ -70,7 +71,7 @@
       name: "Login",
       data(){
         return{
-          loginWay:false,//默认为短信登录
+          loginWay:true,//默认为短信登录
           computeTime:0,//计时为0
           showPwd: false,//是否显示密码
           //收集数据实现前端表单验证
@@ -78,7 +79,7 @@
           code:'',//短信验证码
           name:'',//用户名
           pwd:'',//获取到的密码
-          captcha:'',//手机登录图形验证码
+          captcha:'',//用户名登录图形验证码
 
           alertText: '',//提示文本
           alertShow: false,//是否显示提示框
@@ -104,10 +105,10 @@
                 clearInterval(this.intervalId)
               }
             },1000)
-            //二、发送ajax
+            //二、发送ajax，获取短信验证码
             const result = await reqSendCode(this.phone)
             if(result.code===1){
-              //显示提示
+              //获取没有成功，显示错误的提示
               this.showAlert(result.msg)
               //停止倒计时(数值大于0)
               if(this.computeTime){
@@ -118,7 +119,8 @@
             }
           }
         },
-        //抽取的提示框显示和内容的函数
+        //提示框为隐藏的组件
+        //抽取（提示框显示和提示框内容）的函数
         showAlert(alertText){
           this.alertShow = true
           this.alertText = alertText
@@ -192,8 +194,8 @@
         },
         //密码登录中：点击获取一个新的图片验证码
         getCaptcha(){
-          //每次指定的src要不一样
-          this.$refs.captcha.src = 'http://localhost:4000/captcha?thme='+Date.now()
+          //每次指定的src要不一样,才能发送请求
+          this.$refs.captcha.src = 'http://localhost:4000/captcha?time='+Date.now()
         }
       },
       components:{
@@ -293,7 +295,6 @@
                 &.on
                   background #02a774
                 >.switch_circle
-                  //transform translateX(27px)
                   position absolute
                   top -1px
                   left -1px
@@ -305,7 +306,7 @@
                   box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
                   transition transform .3s
                   &.right
-                    transform translateX(30px)
+                    transform translateX(26px)
             .login_hint
               margin-top 12px
               color #999

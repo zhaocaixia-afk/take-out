@@ -68,7 +68,7 @@
       name: "ShopInfo",
       data(){
         return{
-          //活动的样式
+          //活动的样式数组
           supportClasses:['activity-green','activity-red','activity-orange']
         }
       },
@@ -99,7 +99,7 @@
       },
       watch:{
         info(){
-          //刷新更新数据
+          //有数据之后创建滑动
           this.$nextTick(()=>{
             this._initScroll()
           })

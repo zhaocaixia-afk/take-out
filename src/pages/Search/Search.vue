@@ -1,11 +1,11 @@
 <template>
-  <section class="search">
+  <div class="search">
     <HeaderTop title="搜索"/>
     <form class="search_form" @submit.prevent="search">
-      <input type="search" placeholder="请输入商家名称" class="search_input" v-model="keyword">
-      <input type="submit" class="search_submit">
-    </form>
-    <section class="list">
+        <input type="search" placeholder="请输入商家名称" class="search_input" v-model="keyword">
+        <input type="submit" class="search_submit">
+      </form>
+    <div class="list">
       <ul class="list_container">
         <li class="list_li" v-for="(searchShop,index) in searchShops" :key="index">
           <section class="item_left">
@@ -20,21 +20,22 @@
           </section>
         </li>
       </ul>
-    </section>
+    </div>
     <div class="search_none" v-show="noSearchShop">很抱歉！无搜索结果</div>
-  </section>
+  </div>
 </template>
 
 <script>
   import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
   import {mapState} from 'vuex'
+  import BScroll from 'better-scroll'
 
     export default {
       name: "Search",
       data(){
         return{
-          keyword:'',//
-          noSearchShop:false
+          keyword:'',//输入搜索的关键字
+          noSearchShop:false//开始进入时，为默认不显示。搜索之后才确定是否显示（所以设置为监听属性）
         }
       },
       computed:{
@@ -42,7 +43,7 @@
       },
       methods:{
         search(){
-          //得到搜索关键字
+          //得到搜索关键字（trim去掉空格）
           const keyword = this.keyword.trim()
           //进行搜索
           if(keyword){
@@ -53,12 +54,12 @@
       watch:{
         //监听数组，完了之后
         searchShops(value){
-          //value.length没有值进入
+          //value.length没有值进入（显示提示）
           if(!value.length){
             this.noSearchShop = true
           }else{
+            //有值的话，就不显示，数据会有滚动效果
             this.noSearchShop = false
-
           }
         }
       },
@@ -72,8 +73,8 @@
   @import "../../common/stylus/mixins.styl"
   .search
     width 100%
-    height 100%
     overflow hidden
+    padding-bottom 50px
     .search_form
       clearFix()
       margin-top 45px
@@ -101,6 +102,7 @@
           background-color #02a774
 
     .list
+      width 100%
       .list_container
         background-color: #fff;
         .list_li
