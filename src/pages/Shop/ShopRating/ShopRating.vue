@@ -94,7 +94,9 @@
       mounted(){
         this.$store.dispatch('getShopRatings',()=>{
           this.$nextTick(()=>{
-            new BScroll(this.$refs.ratings)
+            new BScroll(this.$refs.ratings,{
+              click:true
+            })
           })
         })
       },
@@ -222,6 +224,7 @@
         border-1px(rgba(7, 17, 27, 0.1))
         font-size: 0
         .block
+          cursor pointer
           display: inline-block
           padding: 8px 12px
           margin-right: 8px
@@ -237,6 +240,7 @@
             margin-left: 2px
             font-size: 8px
       .switch
+        cursor pointer
         padding: 12px 18px
         line-height: 24px
         border-bottom: 1px solid rgba(7, 17, 27, 0.1)

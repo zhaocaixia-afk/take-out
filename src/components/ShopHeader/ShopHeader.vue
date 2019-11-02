@@ -42,9 +42,8 @@
         <div class="discounts-right"> {{info.supports.length}}个优惠 </div>
       </div>
 
-<!--      添加动画效果-->
+<!--      商家详情信息 添加动画效果-->
       <transition name="fade">
-        <!--      商家详情信息-->
         <div class="shop-brief-modal" v-show="shopShow">
           <div class="brief-modal-content">
             <h2 class="content-title">

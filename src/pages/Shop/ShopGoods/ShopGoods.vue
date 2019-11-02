@@ -99,6 +99,7 @@
         })
         //给右侧绑定事件
         this.foodsScorll = new BScroll('.foods-wrapper',{
+          click:true,
           probeType: 2 //因为惯性滑动不会触发
           //不使用3，是避免滑动过程中频繁切换
           //使用，scrollEnd达到3的效果

@@ -42,6 +42,7 @@
       line-height 24px
       font-size 24px
       color $green
+      cursor pointer
       &.move-enter-active, &.move-leave-active
         transition all .3s
       &.move-enter, &.move-leave-to
@@ -62,4 +63,5 @@
       line-height: 24px
       font-size: 24px
       color $green
+      cursor pointer
 </style>
