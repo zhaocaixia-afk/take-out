@@ -16,6 +16,7 @@
     </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
+<!--      div和img是让加载缓慢时，有图片的显示-->
       <div class="swiper-container" v-if="categorys.length">
         <div class="swiper-wrapper">
 <!--          为一个二维数组（两页）（每一页8个a）-->
