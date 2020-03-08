@@ -1,62 +1,44 @@
 {
   "info": {
-    "name": "嘉禾一品（温都水城）",
-    "description": "硅谷专送",
-    "deliveryTime": 28,
-    "score": 4.2,
-    "serviceScore": 4.1,
-    "foodScore": 4.3,
-    "rankRate": 69.2,
-    "minPrice": 20,
+    "name": "享多味汉堡炸鸡(斑竹湾店)",
+    "avatar": "https://fuss10.elemecdn.com/8/40/02872ce8aefe75c16d3190e75ad61jpeg.jpeg",
+    "bgImg": "https://fuss10.elemecdn.com/f/5c/ead54394c3de198d3e6d3e9111bbfpng.png",
+    "score": 4.5,
+    "sellCount": 468,
+    "description": "蜂鸟专送",
+    "minPrice": 15,
     "deliveryPrice": 4,
+    "deliveryTime": 30,
+    "distance": "1.5km",
+
+    "foodScore": 4.5,
+    "serviceScore": 4.6,
+
+    "rankRate": 69.2,
     "ratingCount": 24,
-    "sellCount": 90,
-    "distance": "1000m",
-    "bulletin": "是以粥为特色的中式营养快餐，自2004年10月18日创立“嘉和一品”品牌至今，不断优化管理，积极创新，立足于“贴近百姓生活，服务千家万户”",
+    "bulletin": "享多味:美食每刻味你而来活动开始了,本月推出新品香辣鸡柳9.9元,傲椒鸡尖7元。本月6.16.26号进店选购香鸡肉卷买一送一,伴翅买一送一,黑椒鸡块买一送一。还有天天特价欢迎大家进店选购哦!支持电话订餐(17380388387)",
     "supports": [
       {
         "type": 0,
         "name": "首单",
-        "content": "新用户下单立减17元(不与其它活动同享)"
+        "content": "饿了么新用户首单立减20元"
+      },
+      {
+        "type": 0,
+        "name": "特价",
+        "content": "特价商品0.2元起"
       },
       {
         "type": 1,
+        "name": "会员",
+        "content": "超级会员领6元无门槛红包"
+      },
+      {
+        "type": 0,
         "name": "满减",
-        "content": "满35减19，满65减35"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减19.5元】欢乐小食餐"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减29元】火烤菠萝皇堡双人餐"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减16.5元】火烤菠萝皇堡单人餐"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减15】经典安格斯单人餐"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减11.95】皇堡双人餐"
-      },
-      {
-        "type": 2,
-        "name": "特价",
-        "content": "【立减19.8】半价单人餐"
+        "content": "满26元减11元，满40元减20元，满60元减25元"
       }
     ],
-    "avatar": "https://fuss10.elemecdn.com/8/40/02872ce8aefe75c16d3190e75ad61jpeg.jpeg",
-    "bgImg": "https://fuss10.elemecdn.com/f/5c/ead54394c3de198d3e6d3e9111bbfpng.png",
     "pics": [
       "https://fuss10.elemecdn.com/f/7f/d1422ec824a0a9d1fb879c57ab533jpeg.jpeg",
       "https://fuss10.elemecdn.com/6/82/2cd3d681f5e93292b3eb49d6b412ajpeg.jpeg",
@@ -64,10 +46,10 @@
       "https://fuss10.elemecdn.com/3/f2/2a8796ba025a5773fd685a95ac369jpeg.jpeg",
       "https://fuss10.elemecdn.com/a/c4/5a78f477fd616a51ce33586a76ddbjpeg.jpeg"
     ],
-    "category": "包子粥店, 简餐",
-    "phone": "18501083744",
-    "address": "北京市丰台区太平桥44号",
-    "workTime": "09:35-24:00"
+    "category": "汉堡薯条/炸鸡炸串",
+    "phone": "17380388387",
+    "address": "乐山市市中区肖坝路163号",
+    "workTime": "09:00-00:00"
   },
   "goods": [
     {
@@ -75,11 +57,11 @@
       "icon": "https://fuss10.elemecdn.com/b/91/8cf4f67e0e8223931cd595dc932fepng.png",
       "foods": [
         {
-          "name": "南瓜粥",
-          "price": 9,
-          "oldPrice": "",
-          "description": "甜粥",
-          "sellCount": 91,
+          "name": "【特价】香辣鸡腿堡",
+          "price": 1,
+          "oldPrice": 12,
+          "description": "汉堡",
+          "sellCount": 17,
           "rating": 100,
           "info": "主、辅料:水、大米、南瓜、冰糖等",
           "ratings": [

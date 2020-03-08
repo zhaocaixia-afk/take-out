@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: "AlertTip",
+      name: "AlertTip",
       props:{
         alertText:String
       },

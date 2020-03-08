@@ -1,6 +1,9 @@
 <template>
   <section class="loginContainer">
     <div class="loginInner">
+      <a href="javascript:" class="go_back" @click="$router.back()">
+        <i class="iconfont icon-jiantou2"></i>
+      </a>
       <div class="login_header">
         <h2 class="login_logo">硅谷外卖</h2>
         <div class="login_header_title">
@@ -13,9 +16,9 @@
           <div :class="{on:loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-<!--              rightPhone为（手机号码正则表达式）的监听属性，返回true or false：1、决定是否显示样式 2、button按钮是否可按-->
-<!--              (禁止点击)：手机号格式不对时，rightPhone为false时-->
-<!--              手机格式正确，才能点击按钮，发送获取验证码的请求，随之按钮的文本内容会显示倒计时-->
+             <!-- rightPhone为（手机号码正则表达式）的监听属性，返回true or false：1、决定是否显示样式 2、button按钮是否可按
+             (禁止点击)：手机号格式不对时，rightPhone为false时
+             手机格式正确，才能点击按钮，发送获取验证码的请求，随之按钮的文本内容会显示倒计时 -->
               <button :class="{right_phone:rightPhone}" @click.prevent="getCode"
                       :disabled="!rightPhone" class="get_verification">
                 {{computeTime>0?`已发送(${computeTime}s)`:'获取验证码'}}
@@ -35,11 +38,11 @@
                 <input type="text" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name">
               </section>
               <section class="login_verification">
-<!--                显示密码与隐藏（有两个input通过v-if和v-else控制显示）-->
+                <!--显示密码与隐藏（有两个input通过v-if和v-else控制显示）-->
                 <input type="text" maxlength="8" placeholder="密码" v-if="showPwd" v-model="pwd">
                 <input type="password" maxlength="8" placeholder="密码" v-else v-model="pwd">
-<!--                点击切换（显示还是隐藏）-->
-<!--                显示时，1、切换为type='text'的input 2、样式为on，文本为abc，添加滚动样式-->
+                <!--点击切换（显示还是隐藏）-->
+                <!--显示时，1、切换为type='text'的input 2、样式为on，文本为abc，添加滚动样式-->
                 <div class="switch_button" :class="showPwd?'on':'off'" @click="showPwd=!showPwd">
                   <div class="switch_circle" :class="{right:showPwd}"></div>
                   <span class="switch_text">{{showPwd?'abc':'...'}}</span>
@@ -55,9 +58,7 @@
         </form>
         <a href="javascript:;" class="about_us">关于我们</a>
       </div>
-      <a href="javascript:" class="go_back" @click="$router.back()">
-        <i class="iconfont icon-jiantou2"></i>
-      </a>
+      
     </div>
 
     <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"/>
@@ -107,6 +108,7 @@
             },1000)
             //二、发送ajax，获取短信验证码
             const result = await reqSendCode(this.phone)
+            console.log(result)
             if(result.code===1){
               //获取没有成功，显示错误的提示
               this.showAlert(result.msg)
@@ -161,11 +163,12 @@
               return;
             }else if(!this.captcha){
               //验证码不正确
-              this.showAlert('验证码不正确')
+              this.showAlert('验证码正确')
               return;
             }
             //二、发送ajax请求密码登陆
             result = await reqPwdLogin({name,pwd,captcha})
+            console.log(result)
           }
           //无论登陆成功还是失败，都要停止计数器
           if(this.computeTime){

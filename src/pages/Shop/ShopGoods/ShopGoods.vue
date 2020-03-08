@@ -2,11 +2,11 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-<!--        current-->
+        <!--current-->
         <li class="menu-item" :class="{current:index==currentIndex}"
             v-for="(good,index) in goods" :key="index" @click="clickMenuItem(index)">
           <span class="text bottom-border-1px">
-<!--            v-if有图片才显示-->
+            <!--v-if有图片才显示-->
             <img class="icon" :src="good.icon" v-if="good.icon"> {{good.name}}
           </span>
         </li>
@@ -34,7 +34,7 @@
                   <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-<!--                  引用组件，传当前food过去-->
+                  <!--引用组件，传当前food过去-->
                   <CartControl :food="food"/>
                 </div>
               </div>
@@ -43,9 +43,10 @@
         </li>
       </ul>
     </div>
+    <!-- 商品详情 -->
     <Food :food="food" ref="food"/>
     <ShopCart/>
-  </div>
+  </div> 
 </template>
 
 <script>
